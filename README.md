@@ -1,4 +1,11 @@
-# DellT5600Hackintosh
+# WARNING
+
+DO NOT DOWNLOAD AND USE THESE FILES WITHOUT KNOWING WHAT YOU ARE DOING.
+THESE CONFIGURATIONS WORKED FOR MY MACHINE, **BUT MAY NOT WORK WITH YOURS!!!**
+I'M SHARING THEM SO THAT THEY MAY HELP YOU TROUBLESHOOT OUR UNDERSTAND PROBLEMS THAT YOU MAY FACE.
+**ONLY USE THESE FILES AS REFERENCE!!!**
+
+# Dell T5600 Hackintosh
 I managed to get macOS Catalina running on a Dell Precision T5600. I didn't find much about hackintoshing this particular desktop, so I hope this helps someone.
 
 # The Challenge
