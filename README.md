@@ -48,9 +48,23 @@ After reading through Dortania's OpenCore guide and making sure that the hardwar
 I already had verified that all components worked both standalone and together in Windows 10, but I had a pretty big issue that I had to fix. Anyone who has tried to mod a Dell PC has encountered the proprietary 5-pin and 4-pin fan headers, so here's what I did:
 
 1. CPU Cooler Fans
-With the CPU Cooler Fans, the fix was relatively easy, I bought a pair of [5-pin to 4-pin fan connector adapters](https://www.ebay.com/itm/193291905125) from ebay
+- With the CPU Cooler Fans, the fix was relatively easy, I bought a pair of [5-pin to 4-pin fan connector adapters](https://www.ebay.com/itm/193291905125) from ebay. Pretty much plug-and-play, you may need to use the Dell Diagnostic Tool at boot in order to get the system to test itself and remove the "CPU Fan Error" that can appear at startup.
 
 2. System Fans
+- With the system/case fans, though they are 4-pin headers, they're slimmer than the one's on the Artic F9 fans. What I did was carefully remove the headers from the motherboard, so that the pins are exposed. Then, after looking for the pinout for the Dell 4-pin header, I realized I had to swap around two cables on the connector. I then plugged them into the bare pins and powered on the system withou issues.
+
+Other hardware related issues I had:
+- Eliminated the CD-R/DVD reader, since I didn't have use for it
+- Can't put the sidepanel back on since I didn't check the clearance for the coolers (can be fixed with lower profile LGA2011 (narrow ILM) coolers)
+
+My build has these PCIe slots populated:
+|**Slot**         |**Device**                                               |
+|-----------------|---------------------------------------------------------|
+|1                |Startech 2-Port USB 3.1 Card PEXUSB312C2 (ASMEDIA 2142)  |
+|2                |EMPTY                                                    |
+|3                |Yuobo BCM94360CD 802.11a/g/n/ac BT4.0 Network Adapter    |
+|4                |NVIDIA Quadro K5200 8GB                                  |
+|5                |EMPTY, Covered by GPU                                    |
 
 
 # The not so easy part II: Getting it to boot OpenCore 0.7.1
