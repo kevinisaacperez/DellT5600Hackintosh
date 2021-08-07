@@ -1,9 +1,9 @@
 # WARNING
 
 DO NOT DOWNLOAD AND USE THESE FILES WITHOUT KNOWING WHAT YOU ARE DOING.
-THESE CONFIGURATIONS WORKED FOR MY MACHINE, **BUT MAY NOT WORK WITH YOURS!!!**
+THESE CONFIGURATIONS WORKED FOR MY MACHINE, ***BUT MAY NOT WORK WITH YOURS!!!***
 I'M SHARING THEM SO THAT THEY MAY HELP YOU TROUBLESHOOT OUR UNDERSTAND PROBLEMS THAT YOU MAY FACE.
-**ONLY USE THESE FILES AS REFERENCE!!!**
+***ONLY USE THESE FILES AS REFERENCE!!!***
 
 # Dell T5600 Hackintosh
 I managed to get macOS Catalina running on a Dell Precision T5600. I didn't find much about hackintoshing this particular desktop, so I hope this helps someone.
@@ -16,7 +16,7 @@ I mostly followed [Dortania's OpenCore Install Guide](https://dortania.github.io
 # The Specs
 So, as of August 7th 2021, this is my current setup:
 
-|Component        |Model                                                    |
+|**Component**    |**Model**                                                |
 |-----------------|---------------------------------------------------------|
 |Desktop          |Dell Precision T5600                                     |
 |Motherboard      |Dell GN6JF (C600 Chipset)                                |
@@ -33,7 +33,7 @@ So, as of August 7th 2021, this is my current setup:
 
 For the motherboard, these are the controllers that interest us:
 
-|Device           |Controller                                               |
+|**Device**       |**Controller**                                           |
 |-----------------|---------------------------------------------------------|
 |CPU              |C600 Chipset (similar to X79)                            |
 |Audio            |RealTek ALC269 High Definition Audio                     |
