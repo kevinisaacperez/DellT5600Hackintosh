@@ -43,6 +43,15 @@ For the motherboard, these are the controllers that interest us:
 
 
 # The not so easy part I: Hardware requirements and BIOS configuration
+After reading through Dortania's OpenCore guide and making sure that the hardware I had was supported, or at least compatible, I began building.
+
+I already had verified that all components worked both standalone and together in Windows 10, but I had a pretty big issue that I had to fix. Anyone who has tried to mod a Dell PC has encountered the proprietary 5-pin and 4-pin fan headers, so here's what I did:
+
+1. CPU Cooler Fans
+With the CPU Cooler Fans, the fix was relatively easy, I bought a pair of [5-pin to 4-pin fan connector adapters](https://www.ebay.com/itm/193291905125) from ebay
+
+2. System Fans
+
 
 # The not so easy part II: Getting it to boot OpenCore 0.7.1
 
