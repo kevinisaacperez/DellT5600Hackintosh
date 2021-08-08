@@ -27,7 +27,7 @@ So, as of August 7th 2021, this is my current setup:
 |CPU Cooling      |2x Cooler Master Hyper 212                               |
 |GPU              |NVIDIA Quadro K5200 8GB                                  |
 |PCIe Card 1      |Startech 2-Port USB 3.1 Card PEXUSB312C2 (ASMEDIA 2142)  |
-|PCIe Card 2      |Yuobo BCM94360CD 802.11a/g/n/ac BT4.0 Network Adapter    |
+|PCIe Card 2      |[Yuobo BCM94360CD 802.11a/g/n/ac BT4.0 Network Adapter](https://www.amazon.com/gp/product/B082X8MBMD/ref=ox_sc_act_title_1?smid=A2ZLT9J6XHPMYK&psc=1)    |
 |RAM              |4x4GB Hynix PC3-12800R                                   |
 |SSD              |Samsung SSD PM851 2.5 7mm 256GB                          |
 |HDD              |Hitachi HDS722020ALA330 2TB                              |
