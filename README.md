@@ -120,10 +120,66 @@ These are the BIOS settings I used, some of the options areeasily identifiable i
 9. Maintenance
   - SERR Messages: Enabled
 
+# Booting OpenCore 0.7.1
+This part only took a couple of hours.
 
-# The not so easy part II: Getting it to boot OpenCore 0.7.1
+So, first step is creating the USB. I used a spare 16GB I had laying around and used another Hackintosh (a Dell Precision M6800) to download MacOS 10.15.7 Catalina full installer, instead of the recovery image. Everything went according to Dortania's Guide, I justa had to make sure to leave everithing on LEGACY MODE, instead of UEFI; I don't know why, but OpenCore wouldn't boot at all if I tried an UEFI Install.
 
-# The very hard part: Getting to the macOS Catalina installer
+After that I added the base X64 files, and continued following the guide. One note I have to make is that I used the Debug version of OpenCore 0.7.1 in case I had problems and, oh boy, did it come in handy.
 
-# The easy part: Final touches
+1. Drivers
+  - HfsPlusLegacy.efi (needed because legacy install)
+  - OpenCanopy.efi (needed later for OpenCore GUI)
+  - OpenRuntime.efi (Required)
+  - OpenPartitionDxe.efi (Don't know why, wouldn't boot without it)
+  - OpenUsbKbDxe.efi (needed because legacy install)
 
+2. Kexts
+This part gave me the largest headache, and is probably one of the reasosn why it took me 3 weeks instead of a couple of days to finish this install. 
+  - VirtualSMC (Required)
+    - SMCDellSensors
+    - SMCProcessor
+    - SMCSuperIO
+  - Lilu (Required)
+  - WhateverGreen (Required)
+  - AppleALC (Required)
+  - IntelMausi (Required for working ethernet port, added after I installed macOS)
+  - USBInjectAll (Required for USB2 Type A ports) (Note: the Bluetooth/WiFi card works natively without Kexts, but requires USBInjectAll for the internal USB port to work.)
+  - mXHCD (Required for USB3 Type A ports, added after I installed macOS)
+  - ASMedia (Required for USB3 Type C ports added with PCIe card, added after I installed macOS)
+  - XHCI-unsupported (Needed for non-native USB controllers)
+  - AppleMCEReporterDisabler (Don't know why, but wouldn't boot without it)
+  - CtlnaAHCIPort (Don't know if it boot without it, too scared to try)
+  - SATA-unsupported (Adds support for a large variety of SATA controllers, couldn't install macOS without it)
+
+3. ACPI
+Reason #2 for this taking way longer than I expected. All were made using the ssdtTime method, for which you'll need Windows or Linux installed on the PC you want to convert to a Hackintosh.
+  - SSDT-EC: Embedded Controller. Required on Sandy Bridge-EP processors.
+  - SSDT-HPET: Fixing IRQ Conflicts. Couldn't boot without it.
+  - SSDT-PM: Power Management. Requiered to connect to Apple's XCPM. Created with CPUFriend after install.
+  - SSDT-UNC: Uncore Bridge. Required for C602/X79 boards.
+
+4. Config plist
+  - I've removed MLB, ROM, UUID and other serials from the file I've provided, so follow Dortania's Guide in order to generate valid ones. Do not use the file as-is, I urge you to read the Guide first and use my config.plist as a reference. 
+  - I'm sorry to say that I've tinkered to much with the plist and don't remember exactly what I've changed compared to the one created with the help from the Guide. It was this file that consumed me for about two weeks (on and off), and was responsible of several sleepless and/or restless nights, some of which involved me dreaming about this file. 
+  - A previous attempt by a [reddit user with this same model (using Clover)](https://www.reddit.com/r/hackintosh/comments/5v9x1w/dell_precision_t5600_32t32g_dp_xeon_successful/) helped me figure out some boot arguments to use, and also convinced me to change the system fans.
+  - I was stuck for a long time with the [[EB|#LOG:EXITBS:START] error](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/extended/kernel-issues.html#stuck-on-eb-log-exitbs-start), and basically tried everything until it worked.
+  - Also, I got stuck at the ["Waiting for Root Device" or Prohibited Sign error](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/extended/kernel-issues.html#waiting-for-root-device-or-prohibited-sign-error), I reset NVRAM and changed UEFI/Quirks/ReleaseUsbOwnership/True.
+
+5. Tools
+  - OpenShell (Required)
+  - OpenRuntime (Used for determining KASLR slide values, removed post install)
+
+# The macOS Catalina installer
+Once past the now very hopeless verbose boot, I went directly to the Disk Utility and formated the disk I was using for this installation. Went back and hit the Install Catalina button.
+
+One issue that did present itself was the [Your Mac needs a firmware update in order to install to this volume](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/extended/userspace-issues.html#stuck-on-your-mac-needs-a-firmware-update-in-order-to-install-to-this-volume), which was resolved following the Guide.
+
+Let it install and be ready for restarts, because you'll need to manually choose the new option in OpenCore.
+
+# Final touches
+Well, the last thing to do now that macOS is installed is copy all the contents of the EFI Partition on your USB to the EFI Partition on your HDD. Mount the EFI partitions using [Mount-EFI by corpnewt](https://github.com/corpnewt/MountEFI). One thing you'll have to do is run the [DuetPkg on the HDD because we installed in legacy mode](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/mac-install.html#legacy-setup), just like when we made the install USB. 
+
+After that, we'll have to generate our SSDT-PM using CPUFriend, and be sure to modify our config.plist using the OC Snapshot in ProperTree.
+
+Restart and you should have a fully functioning Hackintosh. Follow [Dortania's Post-Install Guide](https://dortania.github.io/OpenCore-Post-Install/) to finish setting up your device.
