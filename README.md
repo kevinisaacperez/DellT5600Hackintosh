@@ -8,6 +8,7 @@
 >***ONLY USE THESE FILES AS REFERENCE!!!***
 
 # Dell T5600 Hackintosh
+![28317_1](https://user-images.githubusercontent.com/88598044/146823438-098d8b13-a112-482e-a7f9-4a939b097d07.jpg)
 I managed to get macOS Catalina running on a Dell Precision T5600. I didn't find much about hackintoshing this particular desktop, so I hope this helps someone.
 
 # The Challenge
@@ -16,6 +17,7 @@ So, for a while I've been trying to run an Opencore Hackintosh on this machine, 
 I mostly followed [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/) and a lot of problems were fixed by Googling or trial-and-error.
 
 # The Specs
+![IMG_20210717_223117_982](https://user-images.githubusercontent.com/88598044/146824013-e2bd1dc8-4348-4d9e-9616-59e7622b753e.jpg)
 So, as of August 7th 2021, this is my current setup:
 
 |**Component**    |**Model**                                                |
@@ -27,7 +29,8 @@ So, as of August 7th 2021, this is my current setup:
 |CPU Cooling      |2x Cooler Master Hyper 212                               |
 |GPU              |NVIDIA Quadro K5200 8GB                                  |
 |PCIe Card 1      |Startech 2-Port USB 3.1 Card PEXUSB312C2 (ASMEDIA 2142)  |
-|PCIe Card 2      |[Yuobo BCM94360CD 802.11a/g/n/ac BT4.0 Network Adapter](https://www.amazon.com/gp/product/B082X8MBMD/ref=ox_sc_act_title_1?smid=A2ZLT9J6XHPMYK&psc=1)    |
+|PCIe Card 2      |[Blackmagic Design DeckLink Mini Recorder 4K](https://www.blackmagicdesign.com/products/decklink/techspecs/W-DLK-33) |      
+|PCIe Card 3      |[Yuobo BCM94360CD 802.11a/g/n/ac BT4.0 Network Adapter](https://www.amazon.com/gp/product/B082X8MBMD/ref=ox_sc_act_title_1?smid=A2ZLT9J6XHPMYK&psc=1)    |
 |RAM              |4x4GB Hynix PC3-12800R                                   |
 |SSD              |Samsung SSD PM851 2.5 7mm 256GB                          |
 |HDD              |Hitachi HDS722020ALA330 2TB                              |
@@ -61,10 +64,12 @@ My build has these PCIe slots populated:
 |**Slot**         |**Device**                                               |
 |-----------------|---------------------------------------------------------|
 |1                |Startech 2-Port USB 3.1 Card PEXUSB312C2 (ASMEDIA 2142)  |
-|2                |EMPTY                                                    |
+|2                |Blackmagic Design DeckLink Mini Recorder 4K              |
 |3                |Yuobo BCM94360CD 802.11a/g/n/ac BT4.0 Network Adapter    |
 |4                |NVIDIA Quadro K5200 8GB                                  |
 |5                |EMPTY, Covered by GPU                                    |
+
+Note that the NVIDIA Quadro K5200 works without any additional kexts as it's family of graphics cards is technically supported by macOS. Also, the Blackmagic Design DeckLink Mini works oerfectly by just installing their included software.
 
 # BIOS Configuration
 Update the BIOS to the latest release, in my case it was A19. If you can update it within Windows (before erasing the OS) it'll be easier.
@@ -135,7 +140,7 @@ After that I added the base X64 files, and continued following the guide. One no
   - OpenUsbKbDxe.efi (needed because legacy install)
 
 2. Kexts
-This part gave me the largest headache, and is probably one of the reasosn why it took me 3 weeks instead of a couple of days to finish this install. 
+This part gave me the largest headache, and is probably the main reason why it took me 3 weeks instead of a couple of days to finish this install. 
   - VirtualSMC (Required)
     - SMCDellSensors
     - SMCProcessor
@@ -173,7 +178,7 @@ Reason #2 for this taking way longer than I expected. All were made using the ss
 # The macOS Catalina installer
 Once past the now very hopeless verbose boot, I went directly to the Disk Utility and formated the disk I was using for this installation. Went back and hit the Install Catalina button.
 
-One issue that did present itself was the [Your Mac needs a firmware update in order to install to this volume](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/extended/userspace-issues.html#stuck-on-your-mac-needs-a-firmware-update-in-order-to-install-to-this-volume), which was resolved following the Guide.
+One issue that did present itself was the "[Your Mac needs a firmware update in order to install to this volume](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/extended/userspace-issues.html#stuck-on-your-mac-needs-a-firmware-update-in-order-to-install-to-this-volume)", which was resolved following the Guide.
 
 Let it install and be ready for restarts, because you'll need to manually choose the new option in OpenCore.
 
