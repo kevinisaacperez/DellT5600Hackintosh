@@ -18,7 +18,7 @@ I mostly followed [Dortania's OpenCore Install Guide](https://dortania.github.io
 
 # The Specs
 ![IMG_20210717_223117_982](https://user-images.githubusercontent.com/88598044/146824013-e2bd1dc8-4348-4d9e-9616-59e7622b753e.jpg)
-So, as of August 7th 2021, this is my current setup:
+So, as of November 1st, 2021, this is my current setup:
 
 |**Component**    |**Model**                                                |
 |-----------------|---------------------------------------------------------|
@@ -69,7 +69,7 @@ My build has these PCIe slots populated:
 |4                |NVIDIA Quadro K5200 8GB                                  |
 |5                |EMPTY, Covered by GPU                                    |
 
-Note that the NVIDIA Quadro K5200 works without any additional kexts as it's family of graphics cards is technically supported by macOS. Also, the Blackmagic Design DeckLink Mini works oerfectly by just installing their included software.
+Note that the NVIDIA Quadro K5200 works without any additional kexts as it's family of graphics cards is technically supported by macOS. The Yuobo Network Adapter works out-of-the-box with this machine and macOS. Also, the Blackmagic Design DeckLink Mini works oerfectly by just installing their included software.
 
 # BIOS Configuration
 Update the BIOS to the latest release, in my case it was A19. If you can update it within Windows (before erasing the OS) it'll be easier.
